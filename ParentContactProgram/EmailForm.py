@@ -14,6 +14,7 @@ class ContactGui(object):
         self.gradebookString = StringVar()
         self.messageDestinationString = StringVar()
         self.buildTopInputs(root)
+        self.buildMessageComponents(root)
 
 
 
@@ -21,7 +22,7 @@ class ContactGui(object):
         """Builds top frame for message input components"""
         frame = LabelFrame(master, text = "Inputs")
 
-        frame.grid(padx = 20)
+        frame.grid(row = 0,padx = 20, sticky = "w")
         ttk.Label(frame, text = "Gradebook: ").grid(row = 0, column = 0, sticky = "w")
         self.gradebookEntry = ttk.Entry(frame, cursor = "xterm" , width = "60", textvariable = self.gradebookString )
         self.gradebookEntry.grid(row = 0, column = 1, sticky = "e")
@@ -34,14 +35,13 @@ class ContactGui(object):
         self.messageBrowse = ttk.Button(frame, text="...", command = self.getMessageDestinationFolder)
         self.messageBrowse.grid(row=1, column=2)
 
-        ttk.Label(frame, text = "Select Student(s): ").grid(row = 2, column = 0, sticky = "w")
+    def buildMessageComponents(self, master):
+        frame = LabelFrame(master, text="Message")
+        frame.grid(row = 1, padx=20, sticky = "w")
+        ttk.Label(frame, text = "Grade Components").grid(row = 0, column = 0 , sticky = "w")
 
-        self.studentDropDownMenu = Listbox(frame, selectmode = MULTIPLE, height = 1, activestyle = "none")
-       # yScroll = Scrollbar(self.studentDropDownMenu,orient=VERTICAL)
-       # yScroll.grid(row=0, column=1, sticky="ns")
-      #  yScroll['command'] = self.studentDropDownMenu.yview()
-        self.buildStudentMenu()
-        self.studentDropDownMenu.grid(row = 2, column = 1, sticky = "w")
+
+
 
 
 
@@ -53,9 +53,7 @@ class ContactGui(object):
     def getMessageDestinationFolder(self):
         self.messageDestinationString.set("getting message destination")
 
-    def buildStudentMenu(self):
-        for i in range(len(ContactGui.names)):
-            self.studentDropDownMenu.insert(i, ContactGui.names[i])
+
 
 
 
