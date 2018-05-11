@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-
+from tkinter import filedialog
 
 import sys
 class ContactGui(object):
@@ -63,14 +63,14 @@ class ContactGui(object):
 
 
     def getGradeBook(self):
+        import os
         print("getting Gradebook")
-        self.gradebookString.set("getting Gradebook")
+        self.gradebookString.set(filedialog.askopenfilename(initialdir = os.getcwd()))
 
     def getMessageDestinationFolder(self):
-        self.messageDestinationString.set("getting message destination")
+        self.messageDestinationString.set(filedialog.askdirectory())
 
 
-    def chooseFile(self, root:Tk):
 
 
 
